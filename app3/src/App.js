@@ -37,8 +37,7 @@ class App extends Component {
   }
 
   filterProducts(event){
-    const filter = event.target.value;
-    this.setState({filter})
+    this.setState({filter: event.target.value})
   }
 
   render() {
