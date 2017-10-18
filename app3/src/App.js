@@ -59,7 +59,7 @@ class App extends Component {
         </form>
       </div>
       <div className='products-container'>
-        <Products products={this.state.products} removeProduct={this.removeProduct} />
+        <Products products={this.state.products} removeProduct={this.removeProduct} filter={this.state.filter} />
       </div>
     </div>
   }

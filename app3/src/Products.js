@@ -17,8 +17,17 @@ class Product extends Component{
 
 class Products extends Component{
     render(){
+        const filter = this.props.filter;
+        const products = this.props.products.filter(function(p, i) {
+            if (p.name.toLowerCase().match(filter) !== null) {
+                return true;
+            }
+
+            return false;
+        })
+
         return <div className='products'>
-            {this.props.products.map(
+            {products.map(
                 (p, i) => 
                 <Product
                     product={p}
