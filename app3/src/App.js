@@ -3,15 +3,20 @@ import React, { Component } from 'react'
 import './App.css'
 import data from './data.js'
 import Products from './Products.js'
+import FilterForm from './FilterForm.js'
 
 class App extends Component {
 
   constructor(props){
     super(props)
-    this.state= {products: data.products}
+    this.state= {
+      products: data.products,
+      filter: ''
+    }
 
     this.handleAddProduct = this.handleAddProduct.bind(this)
     this.removeProduct = this.removeProduct.bind(this)
+    this.filterProducts = this.filterProducts.bind(this)
   }
 
   handleAddProduct(event){
@@ -31,12 +36,17 @@ class App extends Component {
     this.setState({products: newProducts})
   }
 
+  filterProducts(event){
+    const filter = event.target.value;
+    this.setState({filter})
+  }
+
   render() {
     return <div className="App">
       <div className="App-header">
         <h2>Kata 3- Filter, show and hide objects</h2>
       </div>
-      <div className='filter-products'>Filter products here...</div>
+      <div className='filter-products'><FilterForm onChange={this.filterProducts} /></div>
       <div className='add-product'>
         <form onSubmit={this.handleAddProduct}>
           <label>product name:
