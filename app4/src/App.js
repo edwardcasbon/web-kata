@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import data from './data.js'
 
 import ProductMenu from './ProductMenu.js'
@@ -19,7 +20,7 @@ class App extends Component {
       </div>
       <div className='products-container'>
         <ProductMenu products={this.state.products} />
-        <ProductContainer />
+        <Route path='/products/:product' component={ProductContainer} />
       </div>
     </div>
   }

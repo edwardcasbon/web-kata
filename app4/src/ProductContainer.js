@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'underscore'
 import data from './data.js'
 import './ProductContainer.css'
 import Product from './Product.js'
@@ -13,8 +12,11 @@ class ProductContainer extends Component {
   }
 
   render() {    
+    const product = this.state.products.filter(p => {
+      return p.name === this.props.match.params.product
+    }).shift();
     return <div className='product-container'>
-      Product container
+      <Product product={product} />
     </div>
   }
 }
