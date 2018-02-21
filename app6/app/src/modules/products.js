@@ -7,7 +7,9 @@ export const PRODUCT_ADD_COMPLETED = 'products/PRODUCT_ADD_COMPLETED'
 export const PRODUCT_REMOVE_REQUESTED = 'products/PRODUCT_REMOVE_REQUESTED'
 export const PRODUCT_REMOVE_COMPLETED = 'products/PRODUCT_REMOVE_COMPLETED'
 
-const initialState = {}
+const initialState = {
+    products: []
+}
 
 export default ( state = initialState, action ) => {
     switch (action.type) {
@@ -18,7 +20,8 @@ export default ( state = initialState, action ) => {
 
         case PRODUCTS_COMPLETED:
             return {
-                ...state
+                ...state,
+                products: action.payload.products
             }
 
         case PRODUCT_ADD_REQUESTED:
@@ -28,7 +31,8 @@ export default ( state = initialState, action ) => {
 
         case PRODUCT_ADD_COMPLETED:
             return {
-                ...state
+                ...state,
+                products: action.payload.products
             }
 
         case PRODUCT_REMOVE_REQUESTED:
@@ -38,7 +42,8 @@ export default ( state = initialState, action ) => {
 
         case PRODUCT_REMOVE_COMPLETED:
             return {
-                ...state
+                ...state,
+                products: action.payload.products
             }
 
         default:
