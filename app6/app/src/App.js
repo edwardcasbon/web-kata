@@ -15,42 +15,11 @@ class App extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      products:[]
-    }
-    this.fetchProducts()
+    this.props.fetchProducts()
 
     this.props.fetchWebServerVersion()
 
     this.handleAddProduct = this.handleAddProduct.bind(this)
-  }
-
-  fetchProducts(){
-    fetch('/api/products/get',{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin'
-    }).then(r => {
-      return r.json()
-    }).then(json => {
-      this.setState({products: json})
-    })
-  }
-
-  onProductRemove(productName){
-    fetch('/api/products/delete/'+productName, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      credentials: 'same-origin'
-    }).then(r => {
-      return r.json()
-    }).then(json => {
-      this.setState({products: json})
-    })
   }
 
   handleAddProduct(event){
@@ -60,18 +29,7 @@ class App extends Component {
       description: event.target.description.value
     }
 
-    fetch('/api/products/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'same-origin',
-      body: JSON.stringify(newProduct)
-    }).then(r => {
-      return r.json()
-    }).then(json => {
-      this.setState({products: json})
-    })
+    this.props.addProduct(newProduct)
   }
 
   render() {
@@ -93,10 +51,10 @@ class App extends Component {
       </div>
       <div className='products-container'>
         <ProductMenu
-          products={this.state.products}
-          onProductRemove={n => this.onProductRemove(n)} />
+          products={this.props.products}
+          onProductRemove={n => this.props.removeProduct(n)} />
         <Route exact path='/products/:productName' component={
-          props => <ProductContainer {...props} products={this.state.products} />
+          props => <ProductContainer {...props} products={this.props.products} />
         } />
       </div>
     </div>
