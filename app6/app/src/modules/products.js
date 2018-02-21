@@ -43,3 +43,70 @@ export default ( state = initialState, action ) => {
             return state
     }
 }
+
+export const fetchProducts = () => {
+    return dispatch => {
+        dispatch({ type: PRODUCTS_REQUESTED })
+        const url = '/api/products/get'
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        }).then(response => {
+            return response.json()
+        }).then(json => {
+            dispatch({
+                type: PRODUCTS_COMPLETED,
+                payload: { products: json }
+            })
+        })
+    }
+}
+
+export const addProduct = newProduct => {
+    return dispatch => {
+        dispatch({ type: PRODUCT_ADD_REQUESTED })
+        const url = '/api/products/add'
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify(newProduct)
+        }).then(response => {
+            return response.json()
+        }).then(json => {
+            dispatch({
+                type: PRODUCT_ADD_COMPLETED,
+                payload: { products: json }
+            })
+        })
+    }
+}
+
+export const removeProduct = product => {
+    return dispatch => {
+        dispatch({ type: PRODUCT_REMOVE_REQUESTED })
+        const url = `/api/products/delete/${product}`
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        }).then(response => {
+            return response.json()
+        }).then(json => {
+            dispatch({
+                type: PRODUCT_REMOVE_COMPLETED,
+                payload: { products: json }
+            })
+        })
+    }
+}
