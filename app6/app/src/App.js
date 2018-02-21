@@ -9,6 +9,7 @@ import ProductContainer from './ProductContainer.js'
 import './App.css'
 
 import { fetchWebServerVersion } from './modules/versions'
+import { fetchProducts, addProduct, removeProduct } from './modules/products'
 
 class App extends Component {
 
