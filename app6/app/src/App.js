@@ -104,11 +104,15 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  version: state.versions.version
+  version: state.versions.version,
+  products: state.products.products
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  fetchWebServerVersion
+  fetchWebServerVersion,
+  fetchProducts,
+  removeProduct,
+  addProduct,
 }, dispatch)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
