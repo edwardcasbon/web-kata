@@ -1,3 +1,5 @@
+import 'whatwg-fetch'
+
 export const PRODUCTS_REQUESTED = 'products/PRODUCTS_REQUESTED'
 export const PRODUCTS_COMPLETED = 'products/PRODUCTS_COMPLETED'
 export const PRODUCT_ADD_REQUESTED = 'products/PRODUCT_ADD_REQUESTED'
